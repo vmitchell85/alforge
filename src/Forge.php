@@ -31,14 +31,14 @@ class Forge
         $this->data = [];
         $this->data['servers'] = [];
         
-        $response = $this->fetchData('https://forge.laravel.com/api/v1/servers', 'GET');
+        $response = $this->apiRequest('https://forge.laravel.com/api/v1/servers', 'GET');
 
         $serverCount = 0;
         
         if( $response->servers ){
             foreach( $response->servers as $server ){
                 $serverCount++;
-                $sitesResponse = $this->fetchData('https://forge.laravel.com/api/v1/servers/'.$server->id.'/sites/', 'GET');
+                $sitesResponse = $this->apiRequest('https://forge.laravel.com/api/v1/servers/'.$server->id.'/sites/', 'GET');
                 $server->sites = $sitesResponse->sites;
                 array_push($this->data['servers'], $server);
             }
@@ -51,7 +51,7 @@ class Forge
         }
     }
 
-    public function fetchData($url, $method = 'POST', $data = '')
+    public function apiRequest($url, $method = 'POST', $data = '')
     {
         $authorization = "Authorization: Bearer " . $this->token;
 
