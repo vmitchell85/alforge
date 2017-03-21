@@ -96,6 +96,10 @@ class Forge
                 }
 
                 break;
+
+            case 'deploy':
+                $response = $this->apiRequest("https://forge.laravel.com/api/v1/servers/$cmdParts[1]/sites/$cmdParts[2]/deployment/deploy");
+                echo 'Deployment Status: ' . $response->site->deployment_status;
             
             default:
                 # code...
@@ -103,27 +107,27 @@ class Forge
         }
     }
 
-    public function search($query)
+    public function search($query, $action)
     {
         $workflow = new Workflow;
 
         foreach ($this->data->servers as $server) {
-            if( strpos($server->name, $query) > -1 ){
+            if( strpos($server->name, $query) > -1 && $action == 'open'){
                 $workflow->result()
                     ->uid($server->id)
                     ->title('Server: ' . $server->name)
                     ->subtitle($server->region)
-                    ->arg('open ' . $server->id)
+                    ->arg($action . ' ' . $server->id)
                     ->valid(true);
             }
             
             foreach ($server->sites as $site) {
-                if( strpos($site->name, $query) > -1 ){
+                if( strpos($site->name, $query) > -1 || strpos($server->name, $query) > -1 ){
                     $workflow->result()
                         ->uid($site->id)
                         ->title('Site: ' . $site->name)
                         ->subtitle($server->name)
-                        ->arg('open ' . $server->id . ' ' . $site->id)
+                        ->arg($action . ' ' . $server->id . ' ' . $site->id)
                         ->valid(true);
                 }
             }
