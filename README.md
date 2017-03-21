@@ -12,3 +12,6 @@
 - `forge deploy {site}` : Deploys the site specified
 - `forge reload` : Fetches new data from Forge API
 - `forge clear` : Deletes your API Key and Forge Data
+
+## Thanks
+- [Alfred 3 Workflows PHP Helper](https://github.com/joetannenbaum/alfred-workflow)
