@@ -22,12 +22,20 @@ class Forge
         if( !file_exists($this->cacheDir) ){
             mkdir($this->cacheDir);
         }
+
+        if( !file_exists($this->dataCache) ){
+            file_put_contents($this->dataCache, json_encode(["servers" => []]));
+        }
+
+        if( !file_exists($this->authCache) ){
+            file_put_contents($this->authCache, '');
+        }
         
-        $this->token = file_exists($this->authCache) ? file_get_contents($this->authCache): '';
-        $this->data = file_exists($this->dataCache) ? json_decode(file_get_contents($this->dataCache)) : $this->loadCache();
+        $this->token = file_get_contents($this->authCache);
+        $this->data = json_decode(file_get_contents($this->dataCache));
     }
 
-    public function loadCache($reload = False)
+    public function loadCache()
     {
         $this->data = [];
         $this->data['servers'] = [];
@@ -47,9 +55,7 @@ class Forge
             file_put_contents($this->dataCache, json_encode($this->data));
         }
 
-        if( $reload ){
-            $this->respond("Loaded $serverCount servers!");
-        }
+        $this->respond("Loaded $serverCount servers into cache!");
     }
 
     public function apiRequest($url, $method = 'POST', $data = '')
@@ -63,16 +69,47 @@ class Forge
         curl_setopt($ch, CURLOPT_POSTFIELDS,$data);
         curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
         $result = curl_exec($ch);
+        $httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         curl_close($ch);
+
+        if($this->requestHasError($result, $httpcode)){
+            die();
+        }
+
         return json_decode($result);
+    }
+
+    public function requestHasError($result, $code)
+    {
+        if($code >= 400 || strpos($result, '<html') > -1){
+            $errorMap = [
+                400 => "Valid data was given but the request has failed.",
+                401 => "No valid API Key was given.",
+                404 => "The request resource could not be found.",
+                422 => "The payload has missing required parameters or invalid data was given.",
+                429 => "Too many attempts.",
+                500 => "Request failed due to an internal error in Forge.",
+                503 => "Forge is offline for maintenance."
+            ];
+
+            if($errorMap[$code]){
+                $this->emitError($errorMap[$code]);
+            }
+            else{
+                $this->emitError("An unknown error occured, maybe try re-setting your API Key in Alfred");
+            }
+
+            return True;
+        }
+
+        return False;
     }
 
     public function setKey($key)
     {
-
+        $this->token = $key;
         file_put_contents($this->authCache, $key);
-
-        $this->respond('API Key Has Been Set');
+        $this->loadCache();
     }
 
     public function clearData()
@@ -180,6 +217,11 @@ class Forge
         }
 
         return True;
+    }
+
+    public function emitError($text)
+    {
+        $response = exec("echo $(osascript -e 'tell application \"Alfred 3\" to run trigger \"push\" in workflow \"com.vmitchell85.alForge\" with argument \"$text\"')");
     }
 
     public function getServerInfo($server_id)
