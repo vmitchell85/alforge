@@ -6,6 +6,19 @@
 	<string>com.vmitchell85.alForge</string>
 	<key>connections</key>
 	<dict>
+		<key>031E2908-466C-4B92-BBE5-EA652D78D96D</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>B9CBA9DA-83D3-4BA3-9E5F-2DED5BA6AA4B</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>098AA9F9-0B22-4AD8-BA5F-9B6623C401CE</key>
 		<array>
 			<dict>
@@ -37,6 +50,32 @@
 			<dict>
 				<key>destinationuid</key>
 				<string>B9CBA9DA-83D3-4BA3-9E5F-2DED5BA6AA4B</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>6514E3EF-7AFF-49B1-B71B-3CD234A2FFC5</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>B9CBA9DA-83D3-4BA3-9E5F-2DED5BA6AA4B</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>70ECD1E1-3183-4CC6-AAE7-DA6E1E21DE87</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>6514E3EF-7AFF-49B1-B71B-3CD234A2FFC5</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -123,6 +162,19 @@
 				<false/>
 			</dict>
 		</array>
+		<key>EF4A1D93-0687-4738-8A81-46C91DFF2DDF</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>031E2908-466C-4B92-BBE5-EA652D78D96D</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 	</dict>
 	<key>createdby</key>
 	<string>Vince Mitchell</string>
@@ -156,14 +208,12 @@
 				<key>runningsubtext</key>
 				<string></string>
 				<key>script</key>
-				<string>use Alfred\Workflows\Workflow;
+				<string>require 'vendor/autoload.php';
+require 'Open.php';
 
-require 'vendor/autoload.php';
-require 'Forge.php';
+$open = new Open();
 
-$forge = new Forge();
-
-return $forge-&gt;search("{query}");</string>
+return $open-&gt;search("{query}");</string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
 				<key>scriptfile</key>
@@ -192,9 +242,10 @@ return $forge-&gt;search("{query}");</string>
 				<key>escaping</key>
 				<integer>100</integer>
 				<key>script</key>
-				<string>require 'Forge.php';
-$forge = new Forge();
-$forge-&gt;execute("{query}");</string>
+				<string>require 'vendor/autoload.php';
+require 'Open.php';
+$open = new Open();
+$open-&gt;execute("{query}");</string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
 				<key>scriptfile</key>
@@ -240,6 +291,154 @@ $forge-&gt;execute("{query}");</string>
 			<string>CD96DC77-C0A6-4DD0-82DB-B7C5FD88028A</string>
 			<key>version</key>
 			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>100</integer>
+				<key>script</key>
+				<string>require 'vendor/autoload.php';
+require 'Deploy.php';
+$deploy = new Deploy();
+$deploy-&gt;execute("{query}");</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>1</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>6514E3EF-7AFF-49B1-B71B-3CD234A2FFC5</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>alfredfiltersresults</key>
+				<false/>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>escaping</key>
+				<integer>100</integer>
+				<key>keyword</key>
+				<string>forge deploy</string>
+				<key>queuedelaycustom</key>
+				<integer>1</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<false/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
+				<key>runningsubtext</key>
+				<string></string>
+				<key>script</key>
+				<string>require 'vendor/autoload.php';
+require 'Deploy.php';
+
+$deploy = new Deploy();
+
+return $deploy-&gt;search("{query}");</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>subtext</key>
+				<string>Type a site to deploy now</string>
+				<key>title</key>
+				<string>Deploy Site</string>
+				<key>type</key>
+				<integer>1</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>70ECD1E1-3183-4CC6-AAE7-DA6E1E21DE87</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>100</integer>
+				<key>script</key>
+				<string>require 'vendor/autoload.php';
+require 'Reboot.php';
+$reboot = new Reboot();
+$reboot-&gt;execute("{query}");</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>1</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>031E2908-466C-4B92-BBE5-EA652D78D96D</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>alfredfiltersresults</key>
+				<false/>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>escaping</key>
+				<integer>100</integer>
+				<key>keyword</key>
+				<string>forge reboot</string>
+				<key>queuedelaycustom</key>
+				<integer>1</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<false/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
+				<key>runningsubtext</key>
+				<string></string>
+				<key>script</key>
+				<string>require 'vendor/autoload.php';
+require 'Reboot.php';
+
+$reboot = new Reboot();
+
+return $reboot-&gt;search("{query}");</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>subtext</key>
+				<string>Choose a server to reboot</string>
+				<key>title</key>
+				<string>Reboot Server</string>
+				<key>type</key>
+				<integer>1</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>EF4A1D93-0687-4738-8A81-46C91DFF2DDF</string>
+			<key>version</key>
+			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -313,33 +512,6 @@ $forge-&gt;loadCache(True);</string>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>100</integer>
-				<key>script</key>
-				<string>require 'Forge.php';
-
-$forge = new Forge();
-
-$forge-&gt;setKey("{query}");</string>
-				<key>scriptargtype</key>
-				<integer>0</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>1</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>56F8FBF9-A577-4764-9D1F-A406E514B0AF</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>lastpathcomponent</key>
 				<false/>
 				<key>onlyshowifquerypopulated</key>
@@ -370,7 +542,7 @@ $forge-&gt;setKey("{query}");</string>
 
 $forge = new Forge();
 
-$forge-&gt;clearData();</string>
+$forge-&gt;setKey("{query}");</string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
 				<key>scriptfile</key>
@@ -381,7 +553,7 @@ $forge-&gt;clearData();</string>
 			<key>type</key>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
-			<string>0BA6B044-E4A5-4D91-BE95-29684D1E8535</string>
+			<string>56F8FBF9-A577-4764-9D1F-A406E514B0AF</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
@@ -406,87 +578,142 @@ $forge-&gt;clearData();</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>100</integer>
+				<key>script</key>
+				<string>require 'Forge.php';
+
+$forge = new Forge();
+
+$forge-&gt;clearData();</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>1</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>0BA6B044-E4A5-4D91-BE95-29684D1E8535</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
 	</array>
 	<key>readme</key>
 	<string></string>
 	<key>uidata</key>
 	<dict>
+		<key>031E2908-466C-4B92-BBE5-EA652D78D96D</key>
+		<dict>
+			<key>xpos</key>
+			<integer>290</integer>
+			<key>ypos</key>
+			<integer>330</integer>
+		</dict>
 		<key>098AA9F9-0B22-4AD8-BA5F-9B6623C401CE</key>
 		<dict>
 			<key>xpos</key>
 			<integer>50</integer>
 			<key>ypos</key>
-			<integer>490</integer>
+			<integer>750</integer>
 		</dict>
 		<key>0BA6B044-E4A5-4D91-BE95-29684D1E8535</key>
 		<dict>
 			<key>xpos</key>
-			<integer>260</integer>
+			<integer>290</integer>
 			<key>ypos</key>
-			<integer>490</integer>
+			<integer>750</integer>
 		</dict>
 		<key>56F8FBF9-A577-4764-9D1F-A406E514B0AF</key>
 		<dict>
 			<key>xpos</key>
-			<integer>260</integer>
+			<integer>290</integer>
 			<key>ypos</key>
-			<integer>350</integer>
+			<integer>610</integer>
 		</dict>
 		<key>5B97BF4E-6FA3-4BF7-9AB1-69B4BA2E4434</key>
 		<dict>
 			<key>xpos</key>
 			<integer>550</integer>
 			<key>ypos</key>
+			<integer>70</integer>
+		</dict>
+		<key>6514E3EF-7AFF-49B1-B71B-3CD234A2FFC5</key>
+		<dict>
+			<key>xpos</key>
+			<integer>290</integer>
+			<key>ypos</key>
+			<integer>200</integer>
+		</dict>
+		<key>70ECD1E1-3183-4CC6-AAE7-DA6E1E21DE87</key>
+		<dict>
+			<key>xpos</key>
 			<integer>50</integer>
+			<key>ypos</key>
+			<integer>200</integer>
 		</dict>
 		<key>7DD3BDE5-A157-42E5-9376-F681FB50A4EE</key>
 		<dict>
 			<key>xpos</key>
 			<integer>50</integer>
 			<key>ypos</key>
-			<integer>50</integer>
+			<integer>70</integer>
 		</dict>
 		<key>89DE4450-CEC9-45C0-B10D-2CFE15E85A21</key>
 		<dict>
 			<key>xpos</key>
 			<integer>50</integer>
 			<key>ypos</key>
-			<integer>350</integer>
+			<integer>610</integer>
 		</dict>
 		<key>8AFEBE96-B1B2-4523-AFE0-2BBF7B3DBEB3</key>
 		<dict>
 			<key>xpos</key>
-			<integer>260</integer>
+			<integer>290</integer>
 			<key>ypos</key>
-			<integer>210</integer>
+			<integer>470</integer>
 		</dict>
 		<key>A1C53C44-B1B2-4562-B519-0A3269F89BB3</key>
 		<dict>
 			<key>xpos</key>
-			<integer>260</integer>
+			<integer>290</integer>
 			<key>ypos</key>
-			<integer>50</integer>
+			<integer>70</integer>
 		</dict>
 		<key>B9CBA9DA-83D3-4BA3-9E5F-2DED5BA6AA4B</key>
 		<dict>
 			<key>xpos</key>
-			<integer>550</integer>
+			<integer>740</integer>
 			<key>ypos</key>
-			<integer>350</integer>
+			<integer>610</integer>
 		</dict>
 		<key>C70E944D-350B-438D-89CE-3E3D7EB83A77</key>
 		<dict>
 			<key>xpos</key>
 			<integer>50</integer>
 			<key>ypos</key>
-			<integer>210</integer>
+			<integer>470</integer>
 		</dict>
 		<key>CD96DC77-C0A6-4DD0-82DB-B7C5FD88028A</key>
 		<dict>
 			<key>xpos</key>
-			<integer>450</integer>
+			<integer>460</integer>
 			<key>ypos</key>
-			<integer>80</integer>
+			<integer>100</integer>
+		</dict>
+		<key>EF4A1D93-0687-4738-8A81-46C91DFF2DDF</key>
+		<dict>
+			<key>xpos</key>
+			<integer>50</integer>
+			<key>ypos</key>
+			<integer>330</integer>
 		</dict>
 	</dict>
 	<key>version</key>
