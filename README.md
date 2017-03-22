@@ -1,5 +1,9 @@
 # alForge - Alfred 3 Workflow for Laravel Forge
 
+Quickly interact with your Forge servers & sites.
+
+Latest stable version is tagged with a release and uploaded to [Packal.org](http://www.packal.org/workflow/alforge).
+
 ## Setup
 
 1. Run `forge key ` and paste your API key in.
