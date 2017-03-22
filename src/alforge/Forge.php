@@ -85,10 +85,14 @@ class Forge
 
     public function respond($arg = '', $variables = [])
     {
+        $defaultVars = [
+            "push_title" => "AlForge Notification"
+        ];
+
         $alfredObj = [
             "alfredworkflow" => [
                 "arg" => $arg,
-                "variables" => $variables
+                "variables" => array_merge($defaultVars, $variables)
             ]
         ];
 
