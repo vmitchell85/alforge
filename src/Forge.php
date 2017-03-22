@@ -47,7 +47,7 @@ class Forge
         }
 
         if( $reload ){
-            echo "Loaded $serverCount servers!";
+            $this->respond("Loaded $serverCount servers!");
         }
     }
 
@@ -71,7 +71,7 @@ class Forge
 
         file_put_contents($this->authCache, $key);
 
-        echo 'API Key Has Been Set';
+        $this->respond('API Key Has Been Set');
     }
 
     public function clearData()
@@ -79,61 +79,124 @@ class Forge
         unlink($this->authCache);
         unlink($this->dataCache);
 
-        echo 'All Data Deleted!';
+        $this->respond('All Data Deleted!');
     }
 
-    public function execute($command)
+    public function respond($arg = '', $variables = [])
     {
-        $cmdParts = split(' ', $command);
+        $alfredObj = [
+            "alfredworkflow" => [
+                "arg" => $arg,
+                "variables" => $variables
+            ]
+        ];
 
-        switch ($cmdParts[0]) {
-            case 'open':
-                if( $cmdParts[2] ){
-                    echo "https://forge.laravel.com/servers/$cmdParts[1]/sites/$cmdParts[2]";
-                }
-                else{
-                    echo "https://forge.laravel.com/servers/$cmdParts[1]";
-                }
-
-                break;
-
-            case 'deploy':
-                $response = $this->apiRequest("https://forge.laravel.com/api/v1/servers/$cmdParts[1]/sites/$cmdParts[2]/deployment/deploy");
-                echo 'Deployment Status: ' . $response->site->deployment_status;
-            
-            default:
-                # code...
-                break;
-        }
+        echo json_encode($alfredObj);
     }
 
-    public function search($query, $action)
+    public function allSearch($query)
     {
         $workflow = new Workflow;
 
         foreach ($this->data->servers as $server) {
-            if( strpos($server->name, $query) > -1 && $action == 'open'){
+            if( strpos($server->name, $query) > -1){
                 $workflow->result()
                     ->uid($server->id)
                     ->title('Server: ' . $server->name)
                     ->subtitle($server->region)
-                    ->arg($action . ' ' . $server->id)
+                    ->arg($server->id)
                     ->valid(true);
             }
-            
+
             foreach ($server->sites as $site) {
                 if( strpos($site->name, $query) > -1 || strpos($server->name, $query) > -1 ){
                     $workflow->result()
                         ->uid($site->id)
                         ->title('Site: ' . $site->name)
                         ->subtitle($server->name)
-                        ->arg($action . ' ' . $server->id . ' ' . $site->id)
+                        ->arg($server->id . ' ' . $site->id)
+                        ->mod('cmd', 'Deploy ' . $site->name, 'deploy ' . $server->id . ' ' . $site->id)
                         ->valid(true);
                 }
             }
         }
 
 
-        echo $workflow->output();
+        return $workflow->output();
     }
+
+    public function siteSearch($query)
+    {
+
+        $workflow = new Workflow;
+
+        foreach ($this->data->servers as $server) {
+            foreach ($server->sites as $site) {
+                if( strpos($site->name, $query) > -1 || strpos($server->name, $query) > -1 ){
+                    $workflow->result()
+                        ->uid($site->id)
+                        ->title('Site: ' . $site->name)
+                        ->subtitle($server->name)
+                        ->arg($server->id . ' ' . $site->id)
+                        ->valid(true);
+                }
+            }
+        }
+
+        return $workflow->output();
+    }
+
+    public function serverSearch($query)
+    {
+
+        $workflow = new Workflow;
+
+        foreach ($this->data->servers as $server) {
+            if( strpos($server->name, $query) > -1){
+                $workflow->result()
+                    ->uid($server->id)
+                    ->title('Server: ' . $server->name)
+                    ->subtitle($server->region)
+                    ->arg($server->id)
+                    ->valid(true);
+            }
+        }
+
+        return $workflow->output();
+    }
+
+    public function confirm($text = "Are you sure?")
+    {
+        $response = exec("echo $(osascript -e 'display dialog \"$text\" buttons {\"Cancel\",\"Confirm\"} default button 2 with title \"Confirm alForge Command\" with icon file \"System:Library:CoreServices:CoreTypes.bundle:Contents:Resources:AlertStopIcon.icns\"')");
+
+        if(!$response){
+            $this->respond('Action Cancelled');
+            return False;
+        }
+
+        return True;
+    }
+
+    public function getServerInfo($server_id)
+    {
+        foreach ($this->data->servers as $server) {
+            if( $server->id == $server_id ){
+                return $server;
+            }
+        }
+    }
+
+    public function getSiteInfo($server_id, $site_id)
+    {
+        foreach ($this->data->servers as $server) {
+            if( $server->id == $server_id ){
+                foreach ($server->sites as $site) {
+                    if($site->id == $site_id){
+                        return $site;
+                    }
+                }
+            }
+        }
+    }
+
 }
