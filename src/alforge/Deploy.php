@@ -38,7 +38,10 @@ class Deploy extends Forge
 
         if($this->confirm("Are you sure you want to deploy the site `$site->name` on `$server->name`?")){
             $response = $this->apiRequest("https://forge.laravel.com/api/v1/servers/$cmdParts[0]/sites/$cmdParts[1]/deployment/deploy");
-            $this->respond("`$site->name` is deploying...");
+            $this->respond(
+                "Status: ".$response->site->deployment_status,
+                ["push_title" => "Deploying `$site->name` on `$server->name`"]
+            );
         }
     }
 }
