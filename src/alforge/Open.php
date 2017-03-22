@@ -1,6 +1,8 @@
 <?php
 
-include('Forge.php');
+namespace AlForge;
+
+use AlForge\Forge;
 use Alfred\Workflows\Workflow;
 
 class Open extends Forge

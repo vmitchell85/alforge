@@ -7,4 +7,5 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Alfred\\Workflows\\' => array($vendorDir . '/joetannenbaum/alfred-workflow/src'),
+    'AlForge\\' => array($baseDir . '/alforge'),
 );

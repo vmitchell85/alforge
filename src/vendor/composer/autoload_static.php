@@ -10,6 +10,7 @@ class ComposerStaticInit0bb8b4875601cf786cabb2ae8c480d87
         'A' => 
         array (
             'Alfred\\Workflows\\' => 17,
+            'AlForge\\' => 8,
         ),
     );
 
@@ -17,6 +18,10 @@ class ComposerStaticInit0bb8b4875601cf786cabb2ae8c480d87
         'Alfred\\Workflows\\' => 
         array (
             0 => __DIR__ . '/..' . '/joetannenbaum/alfred-workflow/src',
+        ),
+        'AlForge\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/alforge',
         ),
     );
 

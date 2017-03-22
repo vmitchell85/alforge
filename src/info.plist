@@ -209,7 +209,8 @@
 				<string></string>
 				<key>script</key>
 				<string>require 'vendor/autoload.php';
-require 'Open.php';
+
+use AlForge\Open;
 
 $open = new Open();
 
@@ -243,7 +244,7 @@ return $open-&gt;search("{query}");</string>
 				<integer>100</integer>
 				<key>script</key>
 				<string>require 'vendor/autoload.php';
-require 'Open.php';
+use AlForge\Open;
 $open = new Open();
 $open-&gt;execute("{query}");</string>
 				<key>scriptargtype</key>
@@ -341,7 +342,7 @@ $deploy-&gt;execute("{query}");</string>
 				<string></string>
 				<key>script</key>
 				<string>require 'vendor/autoload.php';
-require 'Deploy.php';
+use AlForge\Deploy;
 
 $deploy = new Deploy();
 
@@ -415,7 +416,7 @@ $reboot-&gt;execute("{query}");</string>
 				<string></string>
 				<key>script</key>
 				<string>require 'vendor/autoload.php';
-require 'Reboot.php';
+use AlForge\Reboot;
 
 $reboot = new Reboot();
 
@@ -469,7 +470,9 @@ return $reboot-&gt;search("{query}");</string>
 				<key>escaping</key>
 				<integer>100</integer>
 				<key>script</key>
-				<string>require 'Forge.php';
+				<string>require 'vendor/autoload.php';
+
+use AlForge\Forge;
 
 $forge = new Forge();
 
@@ -487,27 +490,6 @@ $forge-&gt;loadCache(True);</string>
 			<string>8AFEBE96-B1B2-4523-AFE0-2BBF7B3DBEB3</string>
 			<key>version</key>
 			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>argumenttype</key>
-				<integer>0</integer>
-				<key>keyword</key>
-				<string>forge key</string>
-				<key>subtext</key>
-				<string>Paste your key after 'forge-key'</string>
-				<key>text</key>
-				<string>Set Forge API Key</string>
-				<key>withspace</key>
-				<true/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.input.keyword</string>
-			<key>uid</key>
-			<string>89DE4450-CEC9-45C0-B10D-2CFE15E85A21</string>
-			<key>version</key>
-			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -533,12 +515,34 @@ $forge-&gt;loadCache(True);</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>keyword</key>
+				<string>forge key</string>
+				<key>subtext</key>
+				<string>Paste your key after 'forge-key'</string>
+				<key>text</key>
+				<string>Set Forge API Key</string>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>89DE4450-CEC9-45C0-B10D-2CFE15E85A21</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>concurrently</key>
 				<false/>
 				<key>escaping</key>
 				<integer>100</integer>
 				<key>script</key>
-				<string>require 'Forge.php';
+				<string>require "vendor/autoload.php";
+use AlForge\Forge;
 
 $forge = new Forge();
 
@@ -586,7 +590,8 @@ $forge-&gt;setKey("{query}");</string>
 				<key>escaping</key>
 				<integer>100</integer>
 				<key>script</key>
-				<string>require 'Forge.php';
+				<string>require "vendor/autoload.php";
+use AlForge\Forge;
 
 $forge = new Forge();
 
@@ -690,9 +695,9 @@ $forge-&gt;clearData();</string>
 		<key>B9CBA9DA-83D3-4BA3-9E5F-2DED5BA6AA4B</key>
 		<dict>
 			<key>xpos</key>
-			<integer>740</integer>
+			<integer>670</integer>
 			<key>ypos</key>
-			<integer>610</integer>
+			<integer>470</integer>
 		</dict>
 		<key>C70E944D-350B-438D-89CE-3E3D7EB83A77</key>
 		<dict>
