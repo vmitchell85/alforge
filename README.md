@@ -14,6 +14,7 @@ Latest stable version is tagged with a release and uploaded to [Packal.org](http
 - `forge key {key}` : Sets your Forge API Key
 - `forge open {site or server}` OR `fo {site or server}` : Opens the specified server or site's Forge page in your browser
 - `forge deploy {site}` : Deploys the site specified (must confirm)
+- `forge ip {server}` : Copies the ip address of the specified server to your clipboard
 - `forge reboot {server}` : Reboots the specified server (must confirm)
 - `forge mysql {server}` : Restarts MySQL on the specified server (must confirm)
 - `forge postgres {server}` : Restarts Postgres on the specified server (must confirm)
