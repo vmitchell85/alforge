@@ -76,7 +76,7 @@ class Forge
             die();
         }
 
-        return json_decode($result);
+        return $result;
     }
 
     public function requestHasError($result, $code)

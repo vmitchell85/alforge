@@ -18,6 +18,9 @@ class Mysql extends Forge
 
         if($this->confirm("Are you sure you want to restart MYSQL on `$server->name`?")){
             $response = $this->apiRequest("https://forge.laravel.com/api/v1/servers/$server->id/mysql/reboot");
+
+            $data = json_decode($response);
+
             $this->respond(
                 "Command sent to Forge",
                 ["push_title" => "Restarting MYSQL on `$server->name`"]

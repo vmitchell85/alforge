@@ -18,6 +18,9 @@ class Reboot extends Forge
 
         if($this->confirm("Are you sure you want to reboot the server `$server->name`?")){
             $response = $this->apiRequest("https://forge.laravel.com/api/v1/servers/$server->id/reboot");
+            
+            $data = json_decode($response);
+            
             $this->respond(
                 "Command sent to Forge",
                 ["push_title" => "Rebooting `$server->name`"]
