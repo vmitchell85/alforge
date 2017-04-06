@@ -17,10 +17,5 @@ class Term extends Forge
         $server = $this->getServerInfo($server_id);
 
         echo $server->ip_address;
-
-        // $query = "ssh forge@$server->ip_address";
-
-        // exec("osascript -e 'tell application \"Terminal\" to do script \"$query\"'");
-        // exec("osascript -e 'activate application \"Terminal\"'");
     }
 }
