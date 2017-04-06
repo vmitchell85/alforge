@@ -45,6 +45,19 @@
 				<false/>
 			</dict>
 		</array>
+		<key>162115A3-5221-48EB-8DDD-F8DF0DC1B286</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>FEC20C12-3ED7-4CF1-B79C-3799519F8520</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>3C69138A-E5D1-4DF5-A31D-B883862223DB</key>
 		<array>
 			<dict>
@@ -305,6 +318,19 @@
 				<false/>
 			</dict>
 		</array>
+		<key>FEC20C12-3ED7-4CF1-B79C-3799519F8520</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>B967E23E-9946-49E5-AB48-A76D78DD08B4</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>FF3CC7D9-1E4F-4F2D-80DA-6B70EC23DF63</key>
 		<array>
 			<dict>
@@ -403,6 +429,40 @@ $deploy-&gt;execute("{query}");</string>
 			<string>6514E3EF-7AFF-49B1-B71B-3CD234A2FFC5</string>
 			<key>version</key>
 			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>lastpathcomponent</key>
+				<false/>
+				<key>onlyshowifquerypopulated</key>
+				<false/>
+				<key>removeextension</key>
+				<false/>
+				<key>text</key>
+				<string>{query}</string>
+				<key>title</key>
+				<string>AlForge Error</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.notification</string>
+			<key>uid</key>
+			<string>0CA4A9B1-B7D5-4B14-AC1A-36E7BE1B7571</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>triggerid</key>
+				<string>push</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.external</string>
+			<key>uid</key>
+			<string>AF915663-530F-4A49-ABD8-3649E9DA17BA</string>
+			<key>version</key>
+			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -616,6 +676,29 @@ $t-&gt;execute("{query}");</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>68</integer>
+				<key>script</key>
+				<string>if application "iTerm" is running then	tell application "iTerm"		set newWindow to (create window with default profile)		tell newWindow			tell current tab				tell current session					write text "ssh forge@{query}"				end tell			end tell		end tell	end tellelse	tell application "iTerm"		tell current window			tell current tab				tell current session					write text "ssh forge@{query}"				end tell			end tell		end tell	end tellend if</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>6</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>58C88819-EA1B-4C18-8827-45EB0D719C20</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>alfredfiltersresults</key>
 				<false/>
 				<key>argumenttype</key>
@@ -658,29 +741,6 @@ return $t-&gt;search("{query}");</string>
 			<string>alfred.workflow.input.scriptfilter</string>
 			<key>uid</key>
 			<string>FDB07C25-C80A-4347-BA2C-E20BA1BC9BCB</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>68</integer>
-				<key>script</key>
-				<string>if application "iTerm" is running then	tell application "iTerm"		set newWindow to (create window with default profile)		tell newWindow			tell current tab				tell current session					write text "ssh forge@{query}"				end tell			end tell		end tell	end tellelse	tell application "iTerm"		tell current window			tell current tab				tell current session					write text "ssh forge@{query}"				end tell			end tell		end tell	end tellend if</string>
-				<key>scriptargtype</key>
-				<integer>0</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>6</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>58C88819-EA1B-4C18-8827-45EB0D719C20</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
@@ -883,6 +943,98 @@ $forge-&gt;setKey("{query}");</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>alfredfiltersresults</key>
+				<false/>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>escaping</key>
+				<integer>100</integer>
+				<key>keyword</key>
+				<string>forge ip</string>
+				<key>queuedelaycustom</key>
+				<integer>1</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<false/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
+				<key>runningsubtext</key>
+				<string></string>
+				<key>script</key>
+				<string>require 'vendor/autoload.php';
+use AlForge\IpAddress;
+
+$ipa = new IpAddress();
+
+return $ipa-&gt;search("{query}");</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>subtext</key>
+				<string>Copy Forge IP of selected server to clipboard</string>
+				<key>title</key>
+				<string>Copy Forge IP</string>
+				<key>type</key>
+				<integer>1</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>162115A3-5221-48EB-8DDD-F8DF0DC1B286</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>autopaste</key>
+				<false/>
+				<key>clipboardtext</key>
+				<string>{query}</string>
+				<key>transient</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.clipboard</string>
+			<key>uid</key>
+			<string>B967E23E-9946-49E5-AB48-A76D78DD08B4</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>100</integer>
+				<key>script</key>
+				<string>require 'vendor/autoload.php';
+use AlForge\IpAddress;
+
+$ipa = new IpAddress();
+$ipa-&gt;execute("{query}");</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>1</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>FEC20C12-3ED7-4CF1-B79C-3799519F8520</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>lastpathcomponent</key>
 				<false/>
 				<key>onlyshowifquerypopulated</key>
@@ -898,40 +1050,6 @@ $forge-&gt;setKey("{query}");</string>
 			<string>alfred.workflow.output.notification</string>
 			<key>uid</key>
 			<string>B9CBA9DA-83D3-4BA3-9E5F-2DED5BA6AA4B</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>lastpathcomponent</key>
-				<false/>
-				<key>onlyshowifquerypopulated</key>
-				<false/>
-				<key>removeextension</key>
-				<false/>
-				<key>text</key>
-				<string>{query}</string>
-				<key>title</key>
-				<string>AlForge Error</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.output.notification</string>
-			<key>uid</key>
-			<string>0CA4A9B1-B7D5-4B14-AC1A-36E7BE1B7571</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>triggerid</key>
-				<string>push</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.trigger.external</string>
-			<key>uid</key>
-			<string>AF915663-530F-4A49-ABD8-3649E9DA17BA</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
@@ -1238,16 +1356,23 @@ return $ngx-&gt;search("{query}");</string>
 		<key>0CA4A9B1-B7D5-4B14-AC1A-36E7BE1B7571</key>
 		<dict>
 			<key>xpos</key>
-			<integer>970</integer>
+			<integer>590</integer>
 			<key>ypos</key>
-			<integer>470</integer>
+			<integer>20</integer>
+		</dict>
+		<key>162115A3-5221-48EB-8DDD-F8DF0DC1B286</key>
+		<dict>
+			<key>xpos</key>
+			<integer>770</integer>
+			<key>ypos</key>
+			<integer>410</integer>
 		</dict>
 		<key>3C69138A-E5D1-4DF5-A31D-B883862223DB</key>
 		<dict>
 			<key>xpos</key>
-			<integer>780</integer>
+			<integer>950</integer>
 			<key>ypos</key>
-			<integer>150</integer>
+			<integer>160</integer>
 		</dict>
 		<key>4101CA88-4BAB-4C4B-8B87-527691E5261F</key>
 		<dict>
@@ -1280,23 +1405,23 @@ return $ngx-&gt;search("{query}");</string>
 		<key>586CD727-A559-4C6D-99A0-E11F09AF8B08</key>
 		<dict>
 			<key>xpos</key>
-			<integer>1020</integer>
+			<integer>1190</integer>
 			<key>ypos</key>
-			<integer>270</integer>
+			<integer>280</integer>
 		</dict>
 		<key>58C88819-EA1B-4C18-8827-45EB0D719C20</key>
 		<dict>
 			<key>xpos</key>
-			<integer>1020</integer>
+			<integer>1190</integer>
 			<key>ypos</key>
-			<integer>150</integer>
+			<integer>160</integer>
 		</dict>
 		<key>5B97BF4E-6FA3-4BF7-9AB1-69B4BA2E4434</key>
 		<dict>
 			<key>xpos</key>
-			<integer>1020</integer>
+			<integer>1190</integer>
 			<key>ypos</key>
-			<integer>30</integer>
+			<integer>40</integer>
 		</dict>
 		<key>6514E3EF-7AFF-49B1-B71B-3CD234A2FFC5</key>
 		<dict>
@@ -1315,9 +1440,9 @@ return $ngx-&gt;search("{query}");</string>
 		<key>7DD3BDE5-A157-42E5-9376-F681FB50A4EE</key>
 		<dict>
 			<key>xpos</key>
-			<integer>600</integer>
+			<integer>770</integer>
 			<key>ypos</key>
-			<integer>30</integer>
+			<integer>40</integer>
 		</dict>
 		<key>89DE4450-CEC9-45C0-B10D-2CFE15E85A21</key>
 		<dict>
@@ -1336,9 +1461,9 @@ return $ngx-&gt;search("{query}");</string>
 		<key>A1C53C44-B1B2-4562-B519-0A3269F89BB3</key>
 		<dict>
 			<key>xpos</key>
-			<integer>780</integer>
+			<integer>950</integer>
 			<key>ypos</key>
-			<integer>30</integer>
+			<integer>40</integer>
 		</dict>
 		<key>AC554D51-F77A-4E4B-8440-0AF22B694539</key>
 		<dict>
@@ -1350,16 +1475,23 @@ return $ngx-&gt;search("{query}");</string>
 		<key>AF915663-530F-4A49-ABD8-3649E9DA17BA</key>
 		<dict>
 			<key>xpos</key>
-			<integer>810</integer>
+			<integer>430</integer>
 			<key>ypos</key>
-			<integer>470</integer>
+			<integer>20</integer>
+		</dict>
+		<key>B967E23E-9946-49E5-AB48-A76D78DD08B4</key>
+		<dict>
+			<key>xpos</key>
+			<integer>1200</integer>
+			<key>ypos</key>
+			<integer>410</integer>
 		</dict>
 		<key>B9CBA9DA-83D3-4BA3-9E5F-2DED5BA6AA4B</key>
 		<dict>
 			<key>xpos</key>
-			<integer>670</integer>
+			<integer>440</integer>
 			<key>ypos</key>
-			<integer>470</integer>
+			<integer>440</integer>
 		</dict>
 		<key>C70E944D-350B-438D-89CE-3E3D7EB83A77</key>
 		<dict>
@@ -1371,9 +1503,9 @@ return $ngx-&gt;search("{query}");</string>
 		<key>CD96DC77-C0A6-4DD0-82DB-B7C5FD88028A</key>
 		<dict>
 			<key>xpos</key>
-			<integer>940</integer>
+			<integer>1110</integer>
 			<key>ypos</key>
-			<integer>60</integer>
+			<integer>70</integer>
 		</dict>
 		<key>CDB8C1D9-4AD9-4B73-8B72-4497D3CAB5F1</key>
 		<dict>
@@ -1399,23 +1531,30 @@ return $ngx-&gt;search("{query}");</string>
 		<key>F0754C94-B143-4994-9ABA-FC8C5C237AED</key>
 		<dict>
 			<key>xpos</key>
-			<integer>600</integer>
+			<integer>770</integer>
 			<key>ypos</key>
-			<integer>270</integer>
+			<integer>280</integer>
 		</dict>
 		<key>FDB07C25-C80A-4347-BA2C-E20BA1BC9BCB</key>
 		<dict>
 			<key>xpos</key>
-			<integer>600</integer>
+			<integer>770</integer>
 			<key>ypos</key>
-			<integer>150</integer>
+			<integer>160</integer>
+		</dict>
+		<key>FEC20C12-3ED7-4CF1-B79C-3799519F8520</key>
+		<dict>
+			<key>xpos</key>
+			<integer>950</integer>
+			<key>ypos</key>
+			<integer>410</integer>
 		</dict>
 		<key>FF3CC7D9-1E4F-4F2D-80DA-6B70EC23DF63</key>
 		<dict>
 			<key>xpos</key>
-			<integer>780</integer>
+			<integer>950</integer>
 			<key>ypos</key>
-			<integer>270</integer>
+			<integer>280</integer>
 		</dict>
 	</dict>
 	<key>version</key>
