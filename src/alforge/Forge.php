@@ -42,13 +42,16 @@ class Forge
         
         $response = $this->apiRequest('https://forge.laravel.com/api/v1/servers', 'GET');
 
+        $data = json_decode($response);
+
         $serverCount = 0;
         
-        if( $response->servers ){
-            foreach( $response->servers as $server ){
+        if( $data->servers ){
+            foreach( $data->servers as $server ){
                 $serverCount++;
                 $sitesResponse = $this->apiRequest('https://forge.laravel.com/api/v1/servers/'.$server->id.'/sites/', 'GET');
-                $server->sites = $sitesResponse->sites;
+                $sitesData = json_decode($sitesResponse);
+                $server->sites = $sitesData->sites;
                 array_push($this->data['servers'], $server);
             }
 
