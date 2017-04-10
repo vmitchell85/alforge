@@ -12,7 +12,7 @@ Latest stable version is tagged with a release and uploaded to [Packal.org](http
 
 ## Available Keywords
 - `forge key {key}` : Sets your Forge API Key
-- `forge open {site or server}` OR `fo {site or server}` : Opens the specified server or site's Forge page in your browser
+- `forge open {site or server}` : Opens the specified server or site's Forge page in your browser
 - `forge deploy {site}` : Deploys the site specified (must confirm)
 - `forge env {site}` : Copies the env file of the site specified to your clipboard
 - `forge ip {server}` : Copies the ip address of the specified server to your clipboard
