@@ -97,6 +97,19 @@
 				<false/>
 			</dict>
 		</array>
+		<key>4EED1DE4-CF6B-47CC-A636-3E5F96FAC89E</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>88F88237-F968-4E03-841A-25412848B257</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>4F506BA7-CF9A-411F-BB46-0309C183269D</key>
 		<array>
 			<dict>
@@ -232,6 +245,19 @@
 			<dict>
 				<key>destinationuid</key>
 				<string>0CA4A9B1-B7D5-4B14-AC1A-36E7BE1B7571</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>B967E23E-9946-49E5-AB48-A76D78DD08B4</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>91C708CB-85F6-493A-B8AB-BF52D3F5E893</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -986,6 +1012,27 @@ $forge-&gt;setKey("{query}");</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>lastpathcomponent</key>
+				<false/>
+				<key>onlyshowifquerypopulated</key>
+				<false/>
+				<key>removeextension</key>
+				<false/>
+				<key>text</key>
+				<string>ip address copied to clipboard</string>
+				<key>title</key>
+				<string>Alforge</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.notification</string>
+			<key>uid</key>
+			<string>91C708CB-85F6-493A-B8AB-BF52D3F5E893</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>concurrently</key>
 				<false/>
 				<key>escaping</key>
@@ -1144,6 +1191,27 @@ $forge-&gt;clearData();</string>
 			<string>4EED1DE4-CF6B-47CC-A636-3E5F96FAC89E</string>
 			<key>version</key>
 			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>lastpathcomponent</key>
+				<false/>
+				<key>onlyshowifquerypopulated</key>
+				<false/>
+				<key>removeextension</key>
+				<false/>
+				<key>text</key>
+				<string>.env file copied to clipboard</string>
+				<key>title</key>
+				<string>Alforge</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.notification</string>
+			<key>uid</key>
+			<string>88F88237-F968-4E03-841A-25412848B257</string>
+			<key>version</key>
+			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -1481,7 +1549,7 @@ $ngx-&gt;execute("{query}");</string>
 		<key>162115A3-5221-48EB-8DDD-F8DF0DC1B286</key>
 		<dict>
 			<key>xpos</key>
-			<integer>770</integer>
+			<integer>730</integer>
 			<key>ypos</key>
 			<integer>410</integer>
 		</dict>
@@ -1509,7 +1577,7 @@ $ngx-&gt;execute("{query}");</string>
 		<key>4EED1DE4-CF6B-47CC-A636-3E5F96FAC89E</key>
 		<dict>
 			<key>xpos</key>
-			<integer>1200</integer>
+			<integer>1070</integer>
 			<key>ypos</key>
 			<integer>530</integer>
 		</dict>
@@ -1565,7 +1633,7 @@ $ngx-&gt;execute("{query}");</string>
 		<key>7CD1813F-FDCF-4F8A-B25E-3BE6180230A3</key>
 		<dict>
 			<key>xpos</key>
-			<integer>770</integer>
+			<integer>730</integer>
 			<key>ypos</key>
 			<integer>530</integer>
 		</dict>
@@ -1575,6 +1643,13 @@ $ngx-&gt;execute("{query}");</string>
 			<integer>770</integer>
 			<key>ypos</key>
 			<integer>40</integer>
+		</dict>
+		<key>88F88237-F968-4E03-841A-25412848B257</key>
+		<dict>
+			<key>xpos</key>
+			<integer>1230</integer>
+			<key>ypos</key>
+			<integer>530</integer>
 		</dict>
 		<key>89DE4450-CEC9-45C0-B10D-2CFE15E85A21</key>
 		<dict>
@@ -1589,6 +1664,13 @@ $ngx-&gt;execute("{query}");</string>
 			<integer>260</integer>
 			<key>ypos</key>
 			<integer>260</integer>
+		</dict>
+		<key>91C708CB-85F6-493A-B8AB-BF52D3F5E893</key>
+		<dict>
+			<key>xpos</key>
+			<integer>1230</integer>
+			<key>ypos</key>
+			<integer>410</integer>
 		</dict>
 		<key>A1C53C44-B1B2-4562-B519-0A3269F89BB3</key>
 		<dict>
@@ -1614,7 +1696,7 @@ $ngx-&gt;execute("{query}");</string>
 		<key>B967E23E-9946-49E5-AB48-A76D78DD08B4</key>
 		<dict>
 			<key>xpos</key>
-			<integer>1200</integer>
+			<integer>1070</integer>
 			<key>ypos</key>
 			<integer>410</integer>
 		</dict>
@@ -1628,7 +1710,7 @@ $ngx-&gt;execute("{query}");</string>
 		<key>C701C43E-3BB9-42F8-9680-9005CEB8DBDA</key>
 		<dict>
 			<key>xpos</key>
-			<integer>950</integer>
+			<integer>910</integer>
 			<key>ypos</key>
 			<integer>530</integer>
 		</dict>
@@ -1684,7 +1766,7 @@ $ngx-&gt;execute("{query}");</string>
 		<key>FEC20C12-3ED7-4CF1-B79C-3799519F8520</key>
 		<dict>
 			<key>xpos</key>
-			<integer>950</integer>
+			<integer>910</integer>
 			<key>ypos</key>
 			<integer>410</integer>
 		</dict>
