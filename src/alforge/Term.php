@@ -2,9 +2,6 @@
 
 namespace AlForge;
 
-use AlForge\Forge;
-use Alfred\Workflows\Workflow;
-
 class Term extends Forge
 {
     public function search($query)

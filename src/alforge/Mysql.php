@@ -2,9 +2,6 @@
 
 namespace AlForge;
 
-use AlForge\Forge;
-use Alfred\Workflows\Workflow;
-
 class Mysql extends Forge
 {
     public function search($query)
@@ -16,7 +13,7 @@ class Mysql extends Forge
     {
         $server = $this->getServerInfo($server_id);
 
-        if($this->confirm("Are you sure you want to restart MYSQL on `$server->name`?")){
+        if ($this->confirm("Are you sure you want to restart MYSQL on `$server->name`?")) {
             $response = $this->apiRequest("https://forge.laravel.com/api/v1/servers/$server->id/mysql/reboot");
 
             $data = json_decode($response);
@@ -26,6 +23,5 @@ class Mysql extends Forge
                 ["push_title" => "Restarting MYSQL on `$server->name`"]
             );
         }
-
     }
 }

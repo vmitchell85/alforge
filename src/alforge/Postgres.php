@@ -2,9 +2,6 @@
 
 namespace AlForge;
 
-use AlForge\Forge;
-use Alfred\Workflows\Workflow;
-
 class Postgres extends Forge
 {
     public function search($query)
@@ -16,7 +13,7 @@ class Postgres extends Forge
     {
         $server = $this->getServerInfo($server_id);
 
-        if($this->confirm("Are you sure you want to restart Postgres on `$server->name`?")){
+        if ($this->confirm("Are you sure you want to restart Postgres on `$server->name`?")) {
             $response = $this->apiRequest("https://forge.laravel.com/api/v1/servers/$server->id/postgres/reboot");
 
             $data = json_decode($response);
@@ -26,6 +23,5 @@ class Postgres extends Forge
                 ["push_title" => "Restarting Postgres on `$server->name`"]
             );
         }
-
     }
 }

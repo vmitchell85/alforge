@@ -19,15 +19,15 @@ class Forge
         $this->dataCache = getenv('alfred_workflow_cache') . '/data.json';
         $this->authCache = getenv('alfred_workflow_cache') . '/auth.txt';
         
-        if( !file_exists($this->cacheDir) ){
+        if (!file_exists($this->cacheDir)) {
             mkdir($this->cacheDir);
         }
 
-        if( !file_exists($this->dataCache) ){
+        if (!file_exists($this->dataCache)) {
             file_put_contents($this->dataCache, json_encode(["servers" => []]));
         }
 
-        if( !file_exists($this->authCache) ){
+        if (!file_exists($this->authCache)) {
             file_put_contents($this->authCache, '');
         }
         
@@ -46,8 +46,8 @@ class Forge
 
         $serverCount = 0;
         
-        if( $data->servers ){
-            foreach( $data->servers as $server ){
+        if ($data->servers) {
+            foreach ($data->servers as $server) {
                 $serverCount++;
                 $sitesResponse = $this->apiRequest('https://forge.laravel.com/api/v1/servers/'.$server->id.'/sites/', 'GET');
                 $sitesData = json_decode($sitesResponse);
@@ -66,16 +66,16 @@ class Forge
         $authorization = "Authorization: Bearer " . $this->token;
 
         $ch = curl_init($url);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json' , $authorization ));
+        curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-Type: application/json' , $authorization ]);
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $method);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_POSTFIELDS,$data);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
         curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
         $result = curl_exec($ch);
         $httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         curl_close($ch);
 
-        if($this->requestHasError($result, $httpcode)){
+        if ($this->requestHasError($result, $httpcode)) {
             die();
         }
 
@@ -84,7 +84,7 @@ class Forge
 
     public function requestHasError($result, $code)
     {
-        if($code >= 400 || strpos($result, '<html') > -1){
+        if ($code >= 400 || strpos($result, '<html') > -1) {
             $errorMap = [
                 400 => "Valid data was given but the request has failed.",
                 401 => "No valid API Key was given.",
@@ -95,17 +95,16 @@ class Forge
                 503 => "Forge is offline for maintenance."
             ];
 
-            if($errorMap[$code]){
+            if ($errorMap[$code]) {
                 $this->emitError($errorMap[$code]);
-            }
-            else{
+            } else {
                 $this->emitError("An unknown error occured, maybe try re-setting your API Key in Alfred");
             }
 
-            return True;
+            return true;
         }
 
-        return False;
+        return false;
     }
 
     public function setKey($key)
@@ -144,7 +143,7 @@ class Forge
         $workflow = new Workflow;
 
         foreach ($this->data->servers as $server) {
-            if( strpos($server->name, $query) > -1){
+            if (strpos($server->name, $query) > -1) {
                 $workflow->result()
                     ->uid($server->id)
                     ->title('Server: ' . $server->name)
@@ -154,7 +153,7 @@ class Forge
             }
 
             foreach ($server->sites as $site) {
-                if( strpos($site->name, $query) > -1 || strpos($server->name, $query) > -1 ){
+                if (strpos($site->name, $query) > -1 || strpos($server->name, $query) > -1) {
                     $workflow->result()
                         ->uid($site->id)
                         ->title('Site: ' . $site->name)
@@ -172,12 +171,11 @@ class Forge
 
     public function siteSearch($query)
     {
-
         $workflow = new Workflow;
 
         foreach ($this->data->servers as $server) {
             foreach ($server->sites as $site) {
-                if( strpos($site->name, $query) > -1 || strpos($server->name, $query) > -1 ){
+                if (strpos($site->name, $query) > -1 || strpos($server->name, $query) > -1) {
                     $workflow->result()
                         ->uid($site->id)
                         ->title('Site: ' . $site->name)
@@ -193,11 +191,10 @@ class Forge
 
     public function serverSearch($query)
     {
-
         $workflow = new Workflow;
 
         foreach ($this->data->servers as $server) {
-            if( strpos($server->name, $query) > -1){
+            if (strpos($server->name, $query) > -1) {
                 $workflow->result()
                     ->uid($server->id)
                     ->title('Server: ' . $server->name)
@@ -214,12 +211,12 @@ class Forge
     {
         $response = exec("echo $(osascript -e 'display dialog \"$text\" buttons {\"Cancel\",\"Confirm\"} default button 2 with title \"Confirm alForge Command\" with icon file \"System:Library:CoreServices:CoreTypes.bundle:Contents:Resources:AlertStopIcon.icns\"')");
 
-        if(!$response){
+        if (!$response) {
             $this->respond('Action Cancelled');
-            return False;
+            return false;
         }
 
-        return True;
+        return true;
     }
 
     public function emitError($text)
@@ -230,7 +227,7 @@ class Forge
     public function getServerInfo($server_id)
     {
         foreach ($this->data->servers as $server) {
-            if( $server->id == $server_id ){
+            if ($server->id == $server_id) {
                 return $server;
             }
         }
@@ -239,14 +236,13 @@ class Forge
     public function getSiteInfo($server_id, $site_id)
     {
         foreach ($this->data->servers as $server) {
-            if( $server->id == $server_id ){
+            if ($server->id == $server_id) {
                 foreach ($server->sites as $site) {
-                    if($site->id == $site_id){
+                    if ($site->id == $site_id) {
                         return $site;
                     }
                 }
             }
         }
     }
-
 }

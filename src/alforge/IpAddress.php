@@ -2,9 +2,6 @@
 
 namespace AlForge;
 
-use AlForge\Forge;
-use Alfred\Workflows\Workflow;
-
 class IpAddress extends Forge
 {
     public function search($query)
@@ -17,6 +14,5 @@ class IpAddress extends Forge
         $server = $this->getServerInfo($server_id);
 
         $this->respond($server->ip_address);
-
     }
 }
