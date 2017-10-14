@@ -1,4 +1,5 @@
 # alForge - Alfred 3 Workflow for Laravel Forge
+[![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
 
 Quickly interact with your Forge servers & sites.
 
@@ -28,3 +29,6 @@ Latest stable version is tagged with a release and uploaded to [Packal.org](http
 ## Thanks
 - [Laravel Forge / Taylor Otwell](https://forge.laravel.com)
 - [Alfred 3 Workflows PHP Helper](https://github.com/joetannenbaum/alfred-workflow)
+
+## License
+[The MIT License (MIT)](LICENSE)
