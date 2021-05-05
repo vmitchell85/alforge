@@ -1,4 +1,4 @@
-# alForge - Alfred 3 Workflow for Laravel Forge
+# alForge - Alfred Workflow for Laravel Forge
 [![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
 
 Quickly interact with your Forge servers & sites.
