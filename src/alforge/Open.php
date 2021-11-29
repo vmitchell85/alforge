@@ -13,7 +13,7 @@ class Open extends Forge
     {
         $cmdParts = explode(' ', $command);
 
-        if ($cmdParts[1]) {
+        if (isset($cmdParts[1])) {
             $this->respond("https://forge.laravel.com/servers/$cmdParts[0]/sites/$cmdParts[1]");
         } else {
             $this->respond("https://forge.laravel.com/servers/$cmdParts[0]");
